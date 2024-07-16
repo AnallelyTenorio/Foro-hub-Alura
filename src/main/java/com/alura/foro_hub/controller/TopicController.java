@@ -38,7 +38,7 @@ public class TopicController {
         ));
     }
 
-    //Buscar tópicos por nombre
+    //Buscar tópicos por nombre del curso
     @GetMapping("/search")
     public Page<DatosListadoTopic> searchTopics(@RequestParam String courseName,  @PageableDefault(sort = "creationDate", direction = Sort.Direction.ASC) Pageable pageable) {
             Page<Topic> topics = topicService.findByCourseName(courseName, pageable);

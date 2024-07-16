@@ -28,6 +28,7 @@ public class TopicService {
 
     @Transactional
     public Topic createTopic(DatosRegistroTopic datosRegistroTopic){
+
         Optional<Topic> existingTopic = topicRepository.findByTitleAndMessage(datosRegistroTopic.getTitle(), datosRegistroTopic.getMessage());
         if(existingTopic.isPresent()){
             throw new IllegalArgumentException("Ya existe un topico con el mismo titulo y mensaje");
@@ -40,8 +41,8 @@ public class TopicService {
         Topic topic = new Topic();
         topic.setTitle(datosRegistroTopic.getTitle());
         topic.setMessage(datosRegistroTopic.getMessage());
-        topic.setAuthor(datosRegistroTopic.getAuthor());
-        topic.setCourse(datosRegistroTopic.getCourse());
+        topic.setAuthor(author);
+        topic.setCourse(course);
         topic.setStatus("OPEN");
 
         return topicRepository.save(topic);
